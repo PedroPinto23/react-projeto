@@ -13,30 +13,22 @@ export default class App extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
   handleChange(event) {
+    event.preventDefault();
     this.setState({
       input: event.target.value
     });
   }
   submitMessage = enviar => {
-    enviar.preventDefault();
-    if (!this.state.input.length) {
-      return;
-    }
-    enviar = this.state.input;
+    (this.state.input === "") ? alert("Insira um item"):
     this.setState({
       input: "",
-      message: this.state.message.concat(enviar)
+      message: this.state.message.concat(this.state.input)
     });
   };
-  handleDelete (event) {
-    let valor = [...this.state.message]
-    let index = valor.indexOf(this.state.input)
-    if (index !== -1){
-      valor.splice(index, 1)
-      this.setState ({
-        message: valor
-      })
-    }
+  handleDelete(index) {
+    this.state.texto.splice(index, 1);
+    this.setState(this.state);
+  }
   };
   render() {
     return (
